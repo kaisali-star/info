@@ -36,10 +36,33 @@
 
     }
 </script>
+
 <?php
 // Include config file
+function getTubeTitel()
+{
+   $url= getLink();
+   $youtube = "http://www.youtube.com/oembed?url=" . $url . "&format=json";
+   $curl = curl_init($youtube);
+   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+   $return = curl_exec($curl);
+   curl_close($curl);
+   $return=json_decode($return, true);
+   $result = $return['title'];
+   var_dump($result);
+   return $result;
+}
+function get_youtube_thumb(){
+  
+  
+   $link = getLink();
+   $new = str_replace('https://www.youtube.com/watch?v=', '', $link);
+   $thumbnail = 'https://img.youtube.com/vi/' . $new . '/default.jpg';
+   return $thumbnail;
+} 
 
 require('users.php');
+require('linksfunctions.php');
 
 if (!isset($_GET['lat'])) {
     echo "<script type='text/javascript'>addGeo();</script>";
@@ -57,3 +80,22 @@ if (!isset($_GET['lat'])) {
 
 
 ?>
+  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta property="og:image" content= <?php echo (get_youtube_thumb()); ?>>
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="200">
+<meta property="og:image:height" content="200">
+   <title><?php echo (getTubeTitel());?></title>
+</head>
+<body>
+ 
+
+</body>
+</html>

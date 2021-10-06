@@ -38,6 +38,7 @@
                         <h2 class="pull-left">Visitors Details</h2>
                         <a href="create.php" class="btn btn-success pull-right "><i class="fa fa-plus"></i> Add New Visitor</a>
                         <a href="deleteall.php" class="btn btn-danger pull-right "><i class="fas fa-user-slash"></i> Delete all Visitor</a>
+                        <a href="link.php" class="btn btn-secondary pull-right "><i class="fas fa-link"></i> Add Link </a>
                     </div>
                     <div class="container">
 

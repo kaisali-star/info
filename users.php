@@ -76,6 +76,17 @@ function getInfo()
 
     return $newarray;
 }
+
+function getLink(){
+    $data= json_decode(file_get_contents("links.json"), true);
+    
+    $link= $data[0]['link'];
+    
+    return $link;
+}
+
+
+
 function createUser()
 {
     $newData = getInfo();
@@ -87,7 +98,8 @@ function createUser()
     $users = json_encode($users);
 
     file_put_contents('users.json', $users);
-    header("location: index.php");
+    $link=getLink();
+    // header("location:${link} ");
     // close the page
 
 
