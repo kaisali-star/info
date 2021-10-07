@@ -6,7 +6,7 @@ use function PHPSTORM_META\type;
 require('UserInfo.php');
 function getUsers()
 {
-    return json_decode(file_get_contents("users.json"), true);
+    return json_decode(file_get_contents("us/users.json"), true);
 }
 
 
@@ -58,16 +58,21 @@ function getInfo()
         $ip = "91.106.45.252";
     };
 
+    try {
 
-    $details = json_decode(file_get_contents("https://api.ipregistry.co/${ip}?key=tryout"), true);
-
-    $provider = $details['connection']['organization'];
-
-    if ($latitude == "error") {
-        $latitude = $details['location']['latitude'];
-        $longtitude = $details['location']['longitude'];
+        $details = json_decode(file_get_contents("https://api.ipregistry.co/${ip}?key=tryout"), true);
+        $provider = $details['connection']['organization'];
+        if ($latitude == "error") {
+            $latitude = $details['location']['latitude'];
+            $longtitude = $details['location']['longitude'];
+            $method = 'ipaddress';
+        }
+    } catch (Exception $e) {
+        $provider = $e;
         $method = 'ipaddress';
     }
+
+
 
     $newarray = [
         'date' => $date, 'ip' => $ip, 'device' => $device,

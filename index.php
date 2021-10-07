@@ -39,8 +39,7 @@
     }
 </script>
 <?php
-require('us/users.php');
-require('li/linksfunctions.php');
+require('users.php');
 if (isset($_GET['id'])) {
     $id = json_encode($_GET['id']);
 } else {
