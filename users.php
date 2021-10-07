@@ -92,6 +92,7 @@ function createUser($id)
     $users = json_encode($users);
 
     file_put_contents('us\users.json', $users);
+    sleep(1);
     $link = "Location: https://www.youtube.com/watch?v=${id}";
     header($link, true, 301);
 }

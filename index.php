@@ -39,7 +39,7 @@
     }
 </script>
 <?php
-require('users.php');
+// require('users.php');
 if (isset($_GET['id'])) {
     $id = json_encode($_GET['id']);
 } else {
