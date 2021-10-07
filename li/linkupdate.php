@@ -11,7 +11,6 @@ $linkdate = $_GET['date'];
 $linkdata = getlinkBydate($linkdate);
 $date = $linkdata['date'];
 $link = $linkdata['link'];
-$picture = $linkdata['picture'];
 $notes = $linkdata['notes'];
 
 
@@ -62,11 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <td><input name="link" class="input" value="<?php echo $link ?>" calss="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <th> Picture </th>
-                                    <td><input name="picture" class="input" value="<?php echo $picture ?>" calss="form-control"></td>
-                                </tr>
-
-                                <tr>
                                     <th> Notes </th>
                                     <td><input name="notes" class="input" value="<?php echo $notes ?>" calss="form-control"></td>
                                 </tr>
@@ -74,11 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                             </tbody>
                         </table>
-
-
-
-
-
 
 
                         <br>

@@ -17,20 +17,13 @@
     <?php
 
     require('users.php');
-    if (!isset($_GET['date'])) {
-        include('partials/not_found.php');
-        exit;
-    }
 
 
     $userdate = $_GET['date'];
 
     $row = getUserBydate($userdate);
     $location = $row['latitude'] . "," . $row['longtitude'];
-    if (!$row) {
-        include('partials/not_found.php');
-        exit;
-    }
+
     ?>
     <div class="float-container">
 

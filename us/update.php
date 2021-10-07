@@ -1,10 +1,5 @@
 <?php
 require('users.php');
-if (!isset($_GET['date'])) {
-    include('partials/not_found.php');
-    exit;
-}
-
 
 $userdate = $_GET['date'];
 
@@ -19,12 +14,6 @@ $longtitude = $user['longtitude'];
 $method = $user['method'];
 $provider = $user['provider'];
 $notes = $user['notes'];
-
-
-if (!$user) {
-    include('partials/not_found.php');
-    exit;
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     updateUser($_POST, $userdate);

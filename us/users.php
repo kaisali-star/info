@@ -1,5 +1,4 @@
 
-
 <?php
 
 use function PHPSTORM_META\type;
@@ -77,39 +76,17 @@ function getInfo()
     return $newarray;
 }
 
-function getLink(){
-    $data= json_decode(file_get_contents("links.json"), true);
-    
-    $link= $data[0]['link'];
-    
-    return $link;
-}
 
-
-
-function createUser()
+function createUser($id)
 {
     $newData = getInfo();
-
-
     $users = getUsers();
-
     $users[] = $newData;
     $users = json_encode($users);
 
     file_put_contents('users.json', $users);
-    $link=getLink();
-    // header("location:${link} ");
-    // close the page
-
-
-    // echo "<script>window.close();</script>";
-
-    // go to youtube 
-    // header('Location: https://www.youtube.com/');
-
-
-
+    $link = 'https://www.youtube.com/watch?v=' + $id;
+    header("location:${link}");
 }
 
 function updateUser($data, $date)
@@ -126,4 +103,3 @@ function updateUser($data, $date)
 
 
 ?>
-

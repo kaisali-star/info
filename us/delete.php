@@ -1,9 +1,7 @@
 <?php
 require ('users.php');
 
-
-
-
-deleteall();
+$userId=$_GET['date'];
+deleteUser($userId);
 header ("Location: index.php");
-
+?>

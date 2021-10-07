@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Links</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <script defer src="all.js"></script>
+    <script defer src="../js/all.js"></script>
     <!--load all styles -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -37,33 +37,34 @@
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">Links Details</h2>
                         <a href="linkcreate.php" class="btn btn-success pull-right "><i class="fa fa-plus"></i> Add New link</a>
-                        <a href="index.php" class="btn btn-secondary pull-right "><i class="fas fa-link"></i> Back to users </a>
+                        <a href="../us/index.php" class="btn btn-secondary pull-right "><i class="fas fa-link"></i> Back to users </a>
                     </div>
                     <div class="container">
 
-                        <table class="table">
-                            <thead>
+                        <table class="table ">
+                            <thead class="table-dark">
                                 <tr>
                                     <th> date </th>
                                     <th> link </th>
-                                    <th> link picture </th>
                                     <th> Notes </th>
                                     <th> action </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php require('linksfunctions.php');
-                                $links = getlinks();
-                                foreach ($links as $link) : ?>
+                                $rows = getlinks();
+                                foreach ($rows as $row) : ?>
                                     <tr>
-                                        <td> <?php echo $link["date"] ?> </td>
-                                        <td> <?php echo $link["link"] ?> </td>
-                                        <td> <?php echo $link["picture"] ?> </td>
-                                        <td> <?php echo $link["notes"] ?> </td>
+                                        <td> <?php echo $row["date"];
+                                       $url = str_replace('https://www.youtube.com/watch?v=', '', $row["link"]);?> </td>
+                                        <td> <a href="<?php echo $row["link"] ?>" target="_blank"><?php echo $row["link"] ?></a> </td>
+
+                                        <td> <?php echo $row["notes"] ?> </td>
                                         <td>
-                                            <a href="linkread.php?date=<?php echo $link["date"] ?>" class="btn btn-sm btn-outline-info"><i class="far fa-eye"></i></a>
-                                            <a href="linkupdate.php?date=<?php echo $link["date"] ?>" class="btn btn-sm btn-outline-secondary"><i class="fas fa-edit"></i></a>
-                                            <a href="linkdelete.php?date=<?php echo $link["date"] ?>" class="btn btn-sm btn-outline-danger"><i class="far fa-trash-alt"></i></a>
+                                            <a href="javascript:CopyToClipboard('<?php echo($url)?>')" class="btn btn-sm btn-outline-primary" > <i class="far fa-copy"></i></a>
+                                            <a href="linkread.php?date=<?php echo $row["date"] ?>" class="btn btn-sm btn-outline-primary"><i class="far fa-eye"></i></a>
+                                            <a href="linkupdate.php?date=<?php echo $row["date"] ?>" class="btn btn-sm btn-outline-secondary"><i class="fas fa-edit"></i></a>
+                                            <a href="linkdelete.php?date=<?php echo $row["date"] ?>" class="btn btn-sm btn-outline-danger"><i class="far fa-trash-alt"></i></a>
 
                                         </td>
                                     </tr>
