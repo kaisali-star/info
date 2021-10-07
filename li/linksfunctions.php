@@ -1,9 +1,10 @@
 <script>
-    var domainName='localhost/';
+    var domainName = 'https://getinfo-first.herokuapp.com/';
+
     function CopyToClipboard(datedate) {
-    
+
         console.log(datedate);
-        text = domainName+"?id="+datedate;
+        text = domainName + "?id=" + datedate;
         if (window.clipboardData && window.clipboardData.setData) {
             // Internet Explorer-specific code path to prevent textarea being shown while dialog is visible.
             return window.clipboardData.setData("Text", text);
