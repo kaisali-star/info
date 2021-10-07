@@ -1,5 +1,5 @@
 <script>
-    var domainName = 'https://getinfo-first.herokuapp.com/';
+    var domainName = 'localhost';
 
     function CopyToClipboard(datedate) {
 

