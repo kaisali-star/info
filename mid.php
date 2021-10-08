@@ -1,5 +1,5 @@
 <?php
-require('users.php');
+require('midfunction.php');
 
 $id = $_GET['id'];
 $latitude  = $_GET['lat'];

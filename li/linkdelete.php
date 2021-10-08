@@ -1,9 +1,7 @@
 <?php
-include ('partials/header.php');
-require ('linksfunctions.php');
+require('linksfunctions.php');
 
-$linkdate=$_GET['date'];
+$linkdate = $_GET['date'];
 deletelink($linkdate);
-header ("Location: link.php");
-
-?>
+header("refresh");
+header("Location: link.php");

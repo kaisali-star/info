@@ -16,30 +16,24 @@
                 str = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id
                 console.log(str);
                 window.location = str;
-
             }
 
             function err() {
                 console.log('error function');
-
                 const latitude = 'error';
                 const longitude = 'unable to retrieve the location';
                 window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
-
             }
         } else {
             const latitude = 'error';
             const longitude = 'unable to retrieve the location';
             window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
-
-
         }
 
 
     }
 </script>
 <?php
-// require('users.php');
 if (isset($_GET['id'])) {
     $id = json_encode($_GET['id']);
 } else {
@@ -63,10 +57,7 @@ function get_youtube_thumb($url)
     return $thumbnail;
 }
 
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
