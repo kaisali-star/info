@@ -28,7 +28,7 @@
     </script>
 </head>
 
-<body>
+<body onLoad=" LoadOnce()">
 
     <div class="wrapper">
         <div class="container-fluid">

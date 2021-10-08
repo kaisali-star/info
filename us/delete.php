@@ -1,7 +1,6 @@
 <?php
-require ('users.php');
+require('users.php');
 
-$userId=$_GET['date'];
+$userId = $_GET['date'];
 deleteUser($userId);
-sleep(1);
-header ("Location: index.php");
+header("Location: index.php");

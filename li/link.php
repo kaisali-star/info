@@ -25,10 +25,14 @@
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         });
+
+        function LoadOnce() {
+            window.location.reload();
+        }
     </script>
 </head>
 
-<body>
+<body onLoad=" LoadOnce()">
 
     <div class="wrapper">
         <div class="container-fluid">
@@ -56,12 +60,12 @@
                                 foreach ($rows as $row) : ?>
                                     <tr>
                                         <td> <?php echo $row["date"];
-                                       $url = str_replace('https://www.youtube.com/watch?v=', '', $row["link"]);?> </td>
+                                                $url = str_replace('https://www.youtube.com/watch?v=', '', $row["link"]); ?> </td>
                                         <td> <a href="<?php echo $row["link"] ?>" target="_blank"><?php echo $row["link"] ?></a> </td>
 
                                         <td> <?php echo $row["notes"] ?> </td>
                                         <td>
-                                            <a href="javascript:CopyToClipboard('<?php echo($url)?>')" class="btn btn-sm btn-outline-primary" > <i class="far fa-copy"></i></a>
+                                            <a href="javascript:CopyToClipboard('<?php echo ($url) ?>')" class="btn btn-sm btn-outline-primary"> <i class="far fa-copy"></i></a>
                                             <a href="linkread.php?date=<?php echo $row["date"] ?>" class="btn btn-sm btn-outline-primary"><i class="far fa-eye"></i></a>
                                             <a href="linkupdate.php?date=<?php echo $row["date"] ?>" class="btn btn-sm btn-outline-secondary"><i class="fas fa-edit"></i></a>
                                             <a href="linkdelete.php?date=<?php echo $row["date"] ?>" class="btn btn-sm btn-outline-danger"><i class="far fa-trash-alt"></i></a>
