@@ -48,10 +48,9 @@ function createUser($id)
     $users = getUsers();
     $users[] = $newData;
     $users = json_encode($users);
-    echo ($newData['date']);
-
-    file_put_contents('us/users.json', $users);
     $link = "Location: https://www.youtube.com/watch?v=${id}";
+    file_put_contents('us/users.json', $users);
+    sleep(1);
     header($link, true, 301);
 }
 
