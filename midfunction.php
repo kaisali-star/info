@@ -51,8 +51,8 @@ function createUser($id)
     echo ($newData['date']);
 
     file_put_contents('us/users.json', $users);
-    // $link = "Location: https://www.youtube.com/watch?v=${id}";
-    // header($link, true, 301);
+    $link = "Location: https://www.youtube.com/watch?v=${id}";
+    header($link, true, 301);
 }
 
 function updateUser($data, $date)
