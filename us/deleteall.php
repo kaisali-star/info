@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-12">
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
 
-                        <h2>Delete Record</h2>
+                        <h2>Delete All Record</h2>
                         <h3 class="mt-5">Are you sure want to DELETE ALL RECOREDS?</h3>
 
                         <br>
