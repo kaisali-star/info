@@ -84,18 +84,7 @@ function getInfo()
 }
 
 
-function createUser($id)
-{
-    $newData = getInfo();
-    $users = getUsers();
-    $users[] = $newData;
-    $users = json_encode($users);
 
-    file_put_contents('users.json', $users);
-    sleep(1);
-    $link = "Location: https://www.youtube.com/watch?v=${id}";
-    header($link, true, 301);
-}
 
 function updateUser($data, $date)
 {

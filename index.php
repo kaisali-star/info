@@ -67,17 +67,17 @@ function getTubeTitel($id)
 <head>
     <meta property="og:url" content="https://www.youtube.com/watch?v=<?php echo ($id); ?>" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="<?php echo (getTubeTitel($id)); ?>" />
+    <meta property="og:title" content=<?php echo (getTubeTitel($id)); ?> />
     <meta property="og:description" content="How much does culture influence creative thinking?" />
-    <meta property="og:image" content="<?php echo (getThumbnail($id)); ?>" />
 
-    <!-- <meta charset="UTF-8">
+
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content=<?php echo (getThumbnail($id)); ?>>
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="200">
-    <meta property="og:image:height" content="200"> -->
+    <meta property="og:image:height" content="200">
     <title><?php echo (getTubeTitel($id)); ?></title>
 </head>
 
