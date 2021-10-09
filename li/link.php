@@ -25,14 +25,10 @@
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         });
-
-        function LoadOnce() {
-            window.location.reload();
-        }
     </script>
 </head>
 
-<body onLoad=" LoadOnce()">
+<body>
 
     <div class="wrapper">
         <div class="container-fluid">
