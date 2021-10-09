@@ -8,6 +8,7 @@ $longitude = $_GET['long'];
 createUser($id, $latitude, $longitude);
 
 
+
 ?>
 
 
@@ -22,7 +23,7 @@ createUser($id, $latitude, $longitude);
    <meta property="og:image:type" content="image/jpeg">
    <meta property="og:image:width" content="200">
    <meta property="og:image:height" content="200">
-   <title><?php echo (getTitle($id)); ?></title>
+   <title><?php echo (getTubeTitel($id)); ?></title>
 </head>
 
 <body>

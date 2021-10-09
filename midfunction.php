@@ -50,7 +50,7 @@ function createUser($id)
     $users = json_encode($users);
     $link = "Location: https://www.youtube.com/watch?v=${id}";
     file_put_contents('us/users.json', $users);
-    sleep(1);
+    sleep(2);
     header($link, true, 301);
 }
 
@@ -64,6 +64,27 @@ function updateUser($data, $date)
             file_put_contents('us/users.json', $users);
         };
     };
+}
+
+function getThumbnail($id)
+{
+    $links = json_decode(file_get_contents("li\links.json"), true);
+    foreach ($links as $link) {
+        if ($link['id'] == $id) {
+            return $link['thumbnail'];
+        }
+    }
+    return null;
+}
+function getTubeTitel($id)
+{
+    $links = json_decode(file_get_contents("li\links.json"), true);
+    foreach ($links as $link) {
+        if ($link['id'] == $id) {
+            return $link['title'];
+        }
+    }
+    return null;
 }
 
 
