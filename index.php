@@ -11,23 +11,20 @@
             function success(position) {
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
-                console.log(latitude + ',' + longitude);
-                console.log(id);
                 str = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id
-                console.log(str);
-                // window.location = str;
+                window.location = str;
             }
 
             function err() {
-                console.log('error function');
+
                 const latitude = 'error';
                 const longitude = 'unable to retrieve the location';
-                // window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+                window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
             }
         } else {
             const latitude = 'error';
             const longitude = 'unable to retrieve the location';
-            // window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+            window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
         }
 
 
@@ -64,8 +61,7 @@ require('li/linksfunctions.php');
 </head>
 
 <body>
-    <label for=""> <?php echo ($id); ?></label>
-    <label for=""> <?php var_dump(getTitle($id)); ?></label>
+
 </body>
 
 </html>
