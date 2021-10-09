@@ -117,25 +117,5 @@ function updatelink($data, $date)
 }
 
 
-function getThumbnail($id)
-{
-    $links = getlinks();
-    foreach ($links as $link) {
-        if ($link['id'] == $id) {
-            return $link['thumbnail'];
-        }
-    }
-    return null;
-}
-function getTitle($id)
-{
-    $links = getlinks();
-    foreach ($links as $link) {
-        if ($link['id'] == $id) {
-            return $link['title'];
-        }
-    }
-    return null;
-}
 
 ?>

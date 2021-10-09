@@ -32,18 +32,33 @@
 </script>
 <?php
 if (isset($_GET['id'])) {
-    $id = json_encode($_GET['id']);
+    $id = $_GET['id'];
+    $idd = json_encode($id);
 } else {
     $id = "";
 }
-echo "<script>main(${id})</script>";
+echo "<script>main(${idd})</script>";
 
-require('li/linksfunctions.php');
-
-
-
-// Include config file
-
+function getThumbnail($id)
+{
+    $links = json_decode(file_get_contents("li\links.json"), true);
+    foreach ($links as $link) {
+        if ($link['id'] == $id) {
+            return $link['thumbnail'];
+        }
+    }
+    return null;
+}
+function getTubeTitel($id)
+{
+    $links = json_decode(file_get_contents("li\links.json"), true);
+    foreach ($links as $link) {
+        if ($link['id'] == $id) {
+            return $link['title'];
+        }
+    }
+    return null;
+}
 
 ?>
 <!DOCTYPE html>
