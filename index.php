@@ -12,7 +12,7 @@
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
                 str = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id
-                window.location = str;
+                window.location.replace(str);
             }
 
             function err() {

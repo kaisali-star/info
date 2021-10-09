@@ -49,22 +49,13 @@ function createUser($id)
     $users[] = $newData;
     $users = json_encode($users);
     $link = "Location: https://www.youtube.com/watch?v=${id}";
-    file_put_contents('us/users.json', $users);
+    file_put_contents('us\users.json', $users);
     sleep(2);
+
     header($link, true, 301);
 }
 
-function updateUser($data, $date)
-{
-    $users = getUsers();
-    foreach ($users as $i => $user) {
-        if ($user['date'] == $date) {
-            $users[$i] = array_merge($user, $data);
-            $users = json_encode($users);
-            file_put_contents('us/users.json', $users);
-        };
-    };
-}
+
 
 function getThumbnail($id)
 {
