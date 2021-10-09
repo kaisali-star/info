@@ -37,7 +37,7 @@
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">Visitors Details</h2>
                         <a href="deleteall.php" class="btn btn-danger pull-right "><i class="fas fa-user-slash"></i> Delete all Visitor</a>
-                        <a href="../li/link.php" class="btn btn-secondary pull-right "><i class="fas fa-link"></i> Add Link </a>
+                        <a href="../li/link.php" class="btn btn-secondary pull-right "><i class="fas fa-link"></i> Links </a>
                     </div>
                     <div class="container">
 
