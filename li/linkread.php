@@ -34,9 +34,9 @@
                     </div>
                     <div class="card-body">
                         <?php
-                         $url = str_replace('https://www.youtube.com/watch?v=', '', $row["link"]);?>
+                        $url = str_replace('https://www.youtube.com/watch?v=', '', $row["link"]); ?>
 
-                        <a class="btn btn-outline-info" href="javascript:CopyToClipboard('<?php echo($url)?>')"> Copy link</a>
+                        <a class="btn btn-outline-info" href="javascript:CopyToClipboard('<?php echo ($url) ?>')"> Copy link</a>
                         <a href="linkupdate.php?date=<?php echo $row["date"] ?>" class="btn btn-outline-success">Update</i></a>
                         <a class="btn btn-outline-danger" href="linkdelete.php?date=<?php echo $row["date"] ?>"> Delete</a>
                         <a class="btn btn-outline-secondary" href="link.php"> Back</a>
@@ -67,6 +67,18 @@
                         <tr>
                             <th> Notes </th>
                             <td><?php echo $row['notes'] ?></td>
+                        </tr>
+                        <tr>
+                            <th> id </th>
+                            <td><?php echo $row['id'] ?></td>
+                        </tr>
+                        <tr>
+                            <th> Image </th>
+                            <td><a href="<?php echo $row['thumbnail'] ?>"><img src="<?php echo $row['thumbnail'] ?>" alt=""></a></td>
+                        </tr>
+                        <tr>
+                            <th> title </th>
+                            <td><?php echo $row['title'] ?></td>
                         </tr>
                         <tr>
 

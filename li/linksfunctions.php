@@ -47,6 +47,7 @@ function getlinkBydate($date)
     return null;
 }
 
+
 function deletelink($date)
 {
     $links = getlinks();
@@ -62,12 +63,34 @@ function deletelink($date)
 
 
 
+function getTubeTitel($id)
+{
 
+    $jsonURL = file_get_contents("https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}");
+    $json = json_decode($jsonURL);
+    $title = $json->{'title'};
+    return $title;
+}
+
+function get_youtube_thumb($url)
+{
+    $thumbnail = 'https://img.youtube.com/vi/' . $url . '/default.jpg';
+    return $thumbnail;
+}
+function getTubeId($url)
+{
+    $id = str_replace("https://www.youtube.com/watch?v=", '', $url);
+    return $id;
+}
 
 function createlink($newData)
 {
+    $link = $newData['link'];
+    $id = getTubeId($link);
+    $thumbnail = get_youtube_thumb($id);
+    $title = getTubeTitel($id);
 
-    $newData += ['date' => date("Y-m-d H:i:s")];
+    $newData += ['date' => date("Y-m-d H:i:s"), 'id' => $id, 'thumbnail' => $thumbnail, 'title' => $title];
     $links = getlinks();
     $links[] = $newData;
     $links = json_encode($links);
@@ -79,6 +102,11 @@ function createlink($newData)
 function updatelink($data, $date)
 {
     $links = getlinks();
+    $tubeLink = $data['link'];
+    $id = getTubeId($tubeLink);
+    $thumbnail = get_youtube_thumb($id);
+    $title = getTubeTitel($id);
+    $data += ['id' => $id, 'thumbnail' => $thumbnail, 'title' => $title];
     foreach ($links as $i => $link) {
         if ($link['date'] == $date) {
             $links[$i] = array_merge($link, $data);
@@ -88,5 +116,26 @@ function updatelink($data, $date)
     };
 }
 
+
+function getThumbnail($id)
+{
+    $links = getlinks();
+    foreach ($links as $link) {
+        if ($link['id'] == $id) {
+            return $link['thumbnail'];
+        }
+    }
+    return null;
+}
+function getTitle($id)
+{
+    $links = getlinks();
+    foreach ($links as $link) {
+        if ($link['id'] == $id) {
+            return $link['title'];
+        }
+    }
+    return null;
+}
 
 ?>

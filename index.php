@@ -15,19 +15,19 @@
                 console.log(id);
                 str = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id
                 console.log(str);
-                window.location = str;
+                // window.location = str;
             }
 
             function err() {
                 console.log('error function');
                 const latitude = 'error';
                 const longitude = 'unable to retrieve the location';
-                window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+                // window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
             }
         } else {
             const latitude = 'error';
             const longitude = 'unable to retrieve the location';
-            window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
+            // window.location.replace = 'mid.php?lat=' + latitude + '&long=' + longitude + '&id=' + id;
         }
 
 
@@ -41,21 +41,12 @@ if (isset($_GET['id'])) {
 }
 echo "<script>main(${id})</script>";
 
+require('li/linksfunctions.php');
+
 
 
 // Include config file
-function getTubeTitel($url)
-{
-    $tmp = file_get_contents("http://youtube.com/watch?v=" . $url);
-    $tmp2 = substr($tmp, (strpos($tmp, "<title>") + 7), 220);
-    $tmp = substr($tmp2, 0, strpos($tmp2, "</title>") - 9);
-    return htmlspecialchars_decode($tmp);
-}
-function get_youtube_thumb($url)
-{
-    $thumbnail = 'https://img.youtube.com/vi/' . $url . '/default.jpg';
-    return $thumbnail;
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -65,7 +56,7 @@ function get_youtube_thumb($url)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image" content=<?php echo (get_youtube_thumb($id)); ?>>
+    <meta property="og:image" content=<?php echo (getThumbnail($id)); ?>>
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="200">
     <meta property="og:image:height" content="200">
@@ -73,7 +64,8 @@ function get_youtube_thumb($url)
 </head>
 
 <body>
-
+    <label for=""> <?php echo ($id); ?></label>
+    <label for=""> <?php var_dump(getTitle($id)); ?></label>
 </body>
 
 </html>
